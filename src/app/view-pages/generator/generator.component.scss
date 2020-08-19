@@ -1,0 +1,31 @@
+.generator-page-container {
+  height: calc(100vh - 250px);
+  padding: 40px;
+  overflow-y: auto; 
+  .top-actions-container {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    .input-character-container {
+      .label-input {
+        margin: 5px 0;
+        font-size: 16px;
+      }
+      .input-container {
+        padding: 5px 0 30px 0;
+        width: 100%;
+      }
+    }
+    .clock-info-container {}
+    .generator-button-container {}
+  }
+
+  .grid-container {}
+  
+  .code-info-container {
+    .code-box {
+
+    }
+  }
+}

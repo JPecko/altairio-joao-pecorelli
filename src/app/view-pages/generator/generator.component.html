@@ -1,0 +1,37 @@
+<div class="generator-page-container">
+  <div class="top-actions-container">
+    <div class="input-character-container">
+      <div class="label-input"> Character </div>
+      <div class="input-container">
+        <input class="name-input" onkeypress="return /[a-z]/i.test(event.key)"
+          style="text-transform: lowercase;"
+          [value]="newCharacter" maxlength="1" (change)=updateCharacter($event)>
+          <span *ngIf="newCharacter === lastCharacter"> cannot repeat the last character </span>
+      </div>
+    </div>
+    <div class="clock-info-container">
+      {{ clock | date: 'hh:mm:ss'}}
+    </div>
+    <div class="generator-button-container">
+      <button class="generator-button" (click)="generate()"
+      [disabled]="!validState()">
+        Generate 2D Grid</button>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <table style="width: 100%;">
+      <tr *ngFor="let row of matrix">
+        <td class="col" *ngFor="let col of row">
+         {{col}}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="code-info-container">
+    <div class="code-box">
+      CODE: {{ code }}
+    </div>
+  </div>
+</div>
