@@ -34,23 +34,24 @@ export class GeneratorComponent implements OnInit {
 
     this.getCharactersBySeconds();
 
+    if (manually && this.newCharacter === '') {
+      clearTimeout(this.manualTimer);
+      clearTimeout(this.autoGenerateTimer);
+    }
 
-
-    if (manually) {
+    if (manually && this.newCharacter !== '') {
       clearTimeout(this.manualTimer);
       clearTimeout(this.autoGenerateTimer);
       this.allowGenerate = false;
       this.manualTimer = setTimeout(() => {
         this.allowGenerate = true;
+        this.lastCharacter = this.newCharacter !== '' ? this.newCharacter : this.lastCharacter;
+        // this.newCharacter = '';
       }, 4000);
-    }
-
+    } 
     this.autoGenerateTimer = setTimeout(() => {
-      this.lastCharacter = this.newCharacter !== '' ? this.newCharacter : this.lastCharacter;
-      this.newCharacter = '';
       this.generate();
     }, 2000);
-    
   }
 
   private getCharactersBySeconds() {

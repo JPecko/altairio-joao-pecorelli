@@ -10,9 +10,10 @@ $black: #333;
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 
     .input-character-container {
-      width: 100px;
+      width: auto;
       .label-input {
         margin: 5px 0;
         font-size: 16px;
@@ -23,12 +24,15 @@ $black: #333;
         .character-input {
           font-size: 16px;
           padding: 4px;
-          width: 100%;
+          width: auto;
+          margin-right: 10px;
         }
       }
     }
     .clock-info-container {
       font-size: 16px;
+      position: absolute;
+      left: 50%;
     }
     .generator-button-container {
       button {
