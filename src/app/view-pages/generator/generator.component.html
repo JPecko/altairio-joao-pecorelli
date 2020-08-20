@@ -3,7 +3,7 @@
     <div class="input-character-container">
       <div class="label-input"> Character </div>
       <div class="input-container">
-        <input class="name-input" onkeypress="return /[a-z]/i.test(event.key)"
+        <input class="character-input" onkeypress="return /[a-z]/i.test(event.key)"
           style="text-transform: lowercase;"
           [value]="newCharacter" maxlength="1" (change)=updateCharacter($event)>
           <span *ngIf="newCharacter === lastCharacter"> cannot repeat the last character </span>
@@ -13,13 +13,13 @@
       {{ clock | date: 'hh:mm:ss'}}
     </div>
     <div class="generator-button-container">
-      <button class="generator-button" (click)="generate()"
+      <button class="generator-button" (click)="generate(true)"
       [disabled]="!validState()">
         Generate 2D Grid</button>
     </div>
   </div>
 
-  <div class="grid-container">
+  <div class="grid-container" *ngIf="matrixFilled">
     <table style="width: 100%;">
       <tr *ngFor="let row of matrix">
         <td class="col" *ngFor="let col of row">
@@ -27,11 +27,12 @@
         </td>
       </tr>
     </table>
-  </div>
 
-  <div class="code-info-container">
-    <div class="code-box">
-      CODE: {{ code }}
+    <div class="code-info-container">
+      <div class="code-box">
+        YOUR CODE: &nbsp;<b> {{ code }} </b>
+      </div>
     </div>
   </div>
+
 </div>

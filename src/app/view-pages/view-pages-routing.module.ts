@@ -11,7 +11,13 @@ const routes: Routes = [
   {
     path: 'payments',
     component: PaymentsComponent
-  }
+  },
+  {
+    path: '', redirectTo: 'generator'
+  },
+  {
+    path: '**', redirectTo: 'generator'
+  },
 ];
 
 @NgModule({

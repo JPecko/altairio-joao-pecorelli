@@ -1,13 +1,18 @@
+$black: #333;
+
 .generator-page-container {
   height: calc(100vh - 250px);
   padding: 40px;
   overflow-y: auto; 
+
   .top-actions-container {
     width: 100%;
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
+
     .input-character-container {
+      width: 100px;
       .label-input {
         margin: 5px 0;
         font-size: 16px;
@@ -15,17 +20,59 @@
       .input-container {
         padding: 5px 0 30px 0;
         width: 100%;
+        .character-input {
+          font-size: 16px;
+          padding: 4px;
+          width: 100%;
+        }
       }
     }
-    .clock-info-container {}
-    .generator-button-container {}
-  }
-
-  .grid-container {}
-  
-  .code-info-container {
-    .code-box {
-
+    .clock-info-container {
+      font-size: 16px;
+    }
+    .generator-button-container {
+      button {
+        cursor: pointer;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
     }
   }
+
+  .grid-container {
+    table {
+      text-align: center;
+      td {
+        font-size: 16px;
+        border: 1px solid $black;
+        border-right: 0;
+        padding: 5px;
+        display: inline-flex;
+        width: 7%;
+        align-items: center;
+        justify-content: center;
+        &:last-child {
+          border-right: 1px solid $black;
+        }
+      }
+    }
+
+    .code-info-container {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;;
+      .code-box {
+        padding: 10px;
+        height: 32px;
+        border: 1px solid $black;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  
 }

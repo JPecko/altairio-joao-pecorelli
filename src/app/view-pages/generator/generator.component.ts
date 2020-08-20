@@ -12,7 +12,10 @@ export class GeneratorComponent implements OnInit {
   allowGenerate: boolean = true;
 
   matrix: string[][] = Array(10).fill('').map(() => Array(10).fill(''));
+  matrixFilled = false;
   code: number;
+  autoGenerateTimer: number;
+  manualTimer: number;
 
   constructor() { }
 
@@ -20,8 +23,8 @@ export class GeneratorComponent implements OnInit {
     this.setClock();
   }
 
-  generate(): void {
-    this.allowGenerate = false;
+  generate(manually?: boolean): void {
+    
     this.matrix = Array(10).fill('').map(() => Array(10).fill(''));
     if (this.newCharacter !== '') {
       this.buildUserMatrix();
@@ -31,12 +34,23 @@ export class GeneratorComponent implements OnInit {
 
     this.getCharactersBySeconds();
 
-    
-    setTimeout(() => {
+
+
+    if (manually) {
+      clearTimeout(this.manualTimer);
+      clearTimeout(this.autoGenerateTimer);
+      this.allowGenerate = false;
+      this.manualTimer = setTimeout(() => {
+        this.allowGenerate = true;
+      }, 4000);
+    }
+
+    this.autoGenerateTimer = setTimeout(() => {
       this.lastCharacter = this.newCharacter !== '' ? this.newCharacter : this.lastCharacter;
       this.newCharacter = '';
-      this.allowGenerate = true;
-    }, 4000);
+      this.generate();
+    }, 2000);
+    
   }
 
   private getCharactersBySeconds() {
@@ -54,7 +68,6 @@ export class GeneratorComponent implements OnInit {
     const totalChar1 = this.sumChar(char1);
     const totalChar2 = this.sumChar(char2);
     this.code = (totalChar1 * 10) + totalChar2;
-    console.log('CODE: ', this.code);
   }
 
   private sumChar(char: string): number {
@@ -98,6 +111,7 @@ export class GeneratorComponent implements OnInit {
         }
       }
     }
+    this.matrixFilled = true;
   }
 
   setClock(): void {
