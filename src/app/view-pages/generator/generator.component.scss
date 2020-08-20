@@ -1,7 +1,6 @@
 $black: #333;
 
 .generator-page-container {
-  height: calc(100vh - 250px);
   padding: 40px;
   overflow-y: auto; 
 
@@ -47,6 +46,7 @@ $black: #333;
   }
 
   .grid-container {
+    margin-top: 25px;
     table {
       text-align: center;
       td {
@@ -65,7 +65,7 @@ $black: #333;
     }
 
     .code-info-container {
-      margin-top: 20px;
+      margin-top: 25px;
       width: 100%;
       display: flex;
       justify-content: center;;

@@ -16,6 +16,7 @@ export class GeneratorComponent implements OnInit {
   code: number;
   autoGenerateTimer: number;
   manualTimer: number;
+  clicked: boolean;
 
   constructor() { }
 
@@ -23,30 +24,32 @@ export class GeneratorComponent implements OnInit {
     this.setClock();
   }
 
-  generate(manually?: boolean): void {
+  generate(clicked?: boolean): void {
+    this.clicked = clicked;
     
     this.matrix = Array(10).fill('').map(() => Array(10).fill(''));
     if (this.newCharacter !== '') {
-      this.buildUserMatrix();
+        this.buildUserMatrix();
     } else {
       this.randomizeMatrix();
+      this.lastCharacter = this.newCharacter;
     }
 
     this.getCharactersBySeconds();
 
-    if (manually && this.newCharacter === '') {
+    if (clicked && this.newCharacter === '') {
       clearTimeout(this.manualTimer);
       clearTimeout(this.autoGenerateTimer);
     }
 
-    if (manually && this.newCharacter !== '') {
+    if (clicked && this.newCharacter !== '') {
       clearTimeout(this.manualTimer);
       clearTimeout(this.autoGenerateTimer);
       this.allowGenerate = false;
       this.manualTimer = setTimeout(() => {
         this.allowGenerate = true;
-        this.lastCharacter = this.newCharacter !== '' ? this.newCharacter : this.lastCharacter;
-        // this.newCharacter = '';
+        this.lastCharacter = this.newCharacter;
+        this.clicked = false;
       }, 4000);
     } 
     this.autoGenerateTimer = setTimeout(() => {
@@ -92,7 +95,8 @@ export class GeneratorComponent implements OnInit {
   }
 
   private buildUserMatrix() {
-    for (let i = 0; i < 10; i++) {
+    const weight = 20; // 20% of 100 cells
+    for (let i = 0; i < weight; i++) {
       const randomR = Math.floor(Math.random() * 10);
       const randomC = Math.floor(Math.random() * 10);
       if (this.matrix[randomR][randomC] === '') {

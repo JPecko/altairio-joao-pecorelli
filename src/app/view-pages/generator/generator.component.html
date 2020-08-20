@@ -6,7 +6,8 @@
         <input class="character-input" onkeypress="return /[a-z]/i.test(event.key)"
           style="text-transform: lowercase;"
           [value]="newCharacter" maxlength="1" (change)=updateCharacter($event)>
-          <span *ngIf="newCharacter === lastCharacter"> Cannot repeat the last character </span>
+          <!-- <span *ngIf="newCharacter === lastCharacter && clicked" style="font-size: 12px;">
+            Cannot repeat the last character </span> -->
       </div>
     </div>
     <div class="clock-info-container">

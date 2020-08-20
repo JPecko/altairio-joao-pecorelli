@@ -7,3 +7,15 @@ body {
   font-size: 14px;
   color: #333;
 }
+
+.navbar {
+  background-color: #333;
+
+  .navbar-nav {
+    display: inline-flex;
+    flex-direction: row;
+    .nav-item {
+      margin: 10px;
+    }
+  }
+}
