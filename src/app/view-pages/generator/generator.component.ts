@@ -57,7 +57,7 @@ export class GeneratorComponent implements OnInit {
   }
 
   updateCharacter(event: any) {
-    this.newCharacter = event.target.value;
+    this.newCharacter = event.target.value.toLowerCase();
   }
 
   validState(): boolean {

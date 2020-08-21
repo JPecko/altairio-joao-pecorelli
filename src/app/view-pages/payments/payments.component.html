@@ -1,5 +1,48 @@
-<div class="code-info-container">
-  <div class="code-box">
-    YOUR CODE: &nbsp;<b> {{ code }} </b>
+<div class="container">
+  <div class="code-info-container">
+    <div class="code-box">
+      YOUR CODE NEW: &nbsp;<b> {{ code }} </b>
+    </div>
   </div>
+  <div class="input-section-container">
+    <div class="input-container">
+      <div class="label-input"> Name </div>
+      <input type="text" [value]="newName" (change)=updateName($event)>
+    </div>
+    <div class="input-container">
+      <div class="label-input"> Amount </div>
+      <input type="number" [value]="newAmount" (change)=updateAmount($event)>
+    </div>
+    <button  (click)="addPayment()" [disabled]="!validPayment()">
+          + ADD </button>
+  </div>
+  <div class="payments-list-container" *ngIf="paymentsList.length"> 
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Code</th>
+        <th>Matrix</th>
+      </tr>
+      <ng-container *ngFor="let payment of paymentsList; let i = index">
+        <tr>
+          <td class="name-label"> {{ payment.name }} </td>
+          <td class="name-label"> {{ payment.amount }} </td>
+          <td class="name-label"> {{ payment.code }} </td>
+          <td class="name-label underline" title="{{ payment.matrix }}"
+            (click)="viewSelectedMatrix(payment.matrix)">
+            Copy of generated matrix </td>
+        </tr>
+      </ng-container>   
+    </table>
+  </div>
+
+  <div class="grid-container" *ngIf="selectedMatrix">
+    <table style="width: 100%;">
+      <tr *ngFor="let row of selectedMatrix">
+        <td class="col" *ngFor="let col of row">
+         {{col}}
+        </td>
+      </tr>
+    </table>
 </div>

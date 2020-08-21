@@ -4,7 +4,8 @@
       <ul class="nav navbar-nav" routerLinkActive="active">
         <li class="nav-item"><a class="nav-link" [ngClass]="{'active': generatorSelected}"
           (click)="onGenerator()" routerLink="generator">Generator</a></li>
-        <li class="nav-item"><a class="nav-link"  [ngClass]="{'active': paymentsSelected}"
+        <li class="nav-item"><a class="nav-link"
+          [ngClass]="{'active': paymentsSelected, 'disabled': !code}"
           (click)="onPayments()" routerLink="payments">Payments</a></li>
       </ul>
   </div>

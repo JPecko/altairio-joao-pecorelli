@@ -88,7 +88,6 @@ export class GeneratorService {
   }
 
   public randomizeMatrix() {
-    console.log('randomize');
     for (let i = 0; i < 10; i++) {
       for (let k = 0; k < 10; k++) {
         if (this.matrixInfo.matrix[i][k] === '') {
@@ -131,7 +130,6 @@ export class GeneratorService {
     if (sum > 9) {
       let i = 2;
       do {
-        console.log(sum);
         sum = Math.ceil(sum / i);
         i += 1;
       } while (sum > 9);  
